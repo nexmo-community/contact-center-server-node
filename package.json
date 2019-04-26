@@ -1,0 +1,19 @@
+{
+  "name": "client-sdk-server-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "nexmo": "^2.4.3-beta-1",
+    "nexmo-client": "^4.0.2"
+  }
+}
