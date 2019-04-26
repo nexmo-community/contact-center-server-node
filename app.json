@@ -1,0 +1,6 @@
+{
+  "name": "Nexmo Client SDK Express Server",
+  "description": "Express backend for Nexmo Client SDK apps",
+  "keywords": [ "nexmo", "express", "javascript" ],
+  "repository": "https://github.com/nexmo-community/client-sdk-server-express"
+}
