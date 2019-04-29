@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const port = process.env.PORT || '3000'
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -133,4 +134,4 @@ app.post('/event', function(req, res) {
   res.status(204);
 });
 
-app.listen(3000);
+app.listen(port);
