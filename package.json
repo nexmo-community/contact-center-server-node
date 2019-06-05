@@ -2,15 +2,24 @@
   "name": "client-sdk-server-express",
   "version": "1.0.0",
   "description": "Express backend for Nexmo Client SDK apps",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
-  "keywords": ["nexmo", "express", "javascript"],
+  "keywords": [
+    "nexmo",
+    "express",
+    "javascript"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "node-sass-middleware": "0.11.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
