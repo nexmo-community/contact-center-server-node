@@ -16,6 +16,7 @@ const nexmo = new Nexmo({
   applicationId: process.env.APP_ID,
   privateKey: process.env.PRIVATE_KEY 
 }, {debug: true});
+
 // if you're using an existing app, you can provide its name and type as defaults here
 var last_app_settings;
 
