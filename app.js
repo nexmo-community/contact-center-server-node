@@ -3,10 +3,6 @@ require('dotenv').config();
 // init server
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-
-app.use(express.static('public'));
-app.use(bodyParser.json());
 
 // create a Nexmo client
 const Nexmo = require('nexmo');
