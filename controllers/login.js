@@ -1,7 +1,7 @@
 exports.login_get = function(req, res) {
-  res.render('index', { title: '' });
+  res.render('login', { title: 'Login' });
 }
 
 exports.login_post = function(req, res) {
-  res.render('index', { title: '' });
+  res.redirect('/app');
 }

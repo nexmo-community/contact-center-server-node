@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var session = require('express-session');
+require('dotenv').config();
 
 var apiRouter = require('./routes/api');
 var appRouter = require('./routes/app');
@@ -25,6 +27,24 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 /**
+ * Session Setup
+ */
+var sess = {
+  secret: process.env.SESSION_SECRET || 'yoursecrethere',
+  cookie: {},
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+ 
+app.use(session(sess));
+
+/**
  * Middleware
  */
 app.use(logger('dev'));
@@ -34,7 +54,7 @@ app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
