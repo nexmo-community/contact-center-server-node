@@ -14,7 +14,6 @@ var apiRouter = require('./routes/api');
 var appRouter = require('./routes/app');
 var eventRouter = require('./routes/event');
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
 var setupRouter = require('./routes/setup');
 var webhooksRouter = require('./routes/webhooks');
 
@@ -82,7 +81,6 @@ app.use('/api', apiRouter);
 app.use('/app', auth.secure(), appRouter);
 app.use('/app/events', auth.secure(), eventRouter);
 app.use('/app/setup', auth.secure(), setupRouter);
-app.use('/login', loginRouter);
 app.use('/webhooks', webhooksRouter);
 
 /**
