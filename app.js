@@ -1,3 +1,4 @@
+var auth = require('./util/auth');
 var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var express = require('express');
@@ -7,7 +8,6 @@ var logger = require('morgan');
 var path = require('path');
 var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
-var auth = require('./util/auth');
 require('dotenv').config();
 
 var apiRouter = require('./routes/api');
