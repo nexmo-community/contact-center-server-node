@@ -1,9 +1,15 @@
 require('dotenv').config();
-const Nexmo = require('nexmo');
+const NexmoApi = require('nexmo');
 
-exports.default = new Nexmo({
-  apiKey: process.env.API_KEY,
-  apiSecret: process.env.API_SECRET,
-  applicationId: process.env.APP_ID,
-  privateKey: process.env.PRIVATE_KEY 
-}, {debug: true});
+function Nexmo(apiKey, apiSecret, options) {
+  this.nexmo = new NexmoApi({
+    apiKey: apiKey,
+    apiSecret: apiSecret
+  }, options);
+}
+
+Nexmo.prototype.apps = function apps(options, callback) {
+  return this.nexmo.applications.get(options, callback)
+};
+
+module.exports = Nexmo;

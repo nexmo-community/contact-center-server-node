@@ -1,10 +1,13 @@
+var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+var flash = require('express-flash');
+var hbs = require('express-handlebars');
 var logger = require('morgan');
+var path = require('path');
 var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
+var auth = require('./util/auth');
 require('dotenv').config();
 
 var apiRouter = require('./routes/api');
@@ -23,6 +26,12 @@ var app = express();
 /**
  * Template engine setup
  */
+app.engine('hbs', hbs({ 
+  extname: 'hbs', 
+  defaultLayout: 'layout',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials')
+}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -31,7 +40,7 @@ app.set('view engine', 'hbs');
  */
 var sess = {
   secret: process.env.SESSION_SECRET || 'yoursecrethere',
-  cookie: {},
+  cookie: { maxAge: 60000 },
   proxy: true,
   resave: true,
   saveUninitialized: true
@@ -47,6 +56,7 @@ app.use(session(sess));
 /**
  * Middleware
  */
+app.use(auth());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -57,6 +67,11 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
+app.use(flash());
+
+/**
+ * Static public content
+ */
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
@@ -64,9 +79,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
-app.use('/app', appRouter);
-app.use('/app/events', eventRouter);
-app.use('/app/setup', setupRouter);
+app.use('/app', auth.secure(), appRouter);
+app.use('/app/events', auth.secure(), eventRouter);
+app.use('/app/setup', auth.secure(), setupRouter);
 app.use('/login', loginRouter);
 app.use('/webhooks', webhooksRouter);
 
