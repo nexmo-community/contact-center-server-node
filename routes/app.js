@@ -10,6 +10,9 @@ var appController = require('../controllers/app');
 // GET app
 router.get('/', appController.app_get);
 
+// GET app reset
+router.get('/reset', appController.app_reset_get);
+
 // GET app edit
 router.get('/edit', appController.app_edit_get);
 

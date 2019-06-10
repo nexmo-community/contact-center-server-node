@@ -5,11 +5,11 @@ router.post('/answer', function(req, res) {
   res.json({});
 });
 
-router.post('/answer/event/voice', function(req, res) {
+router.post('/event/voice', function(req, res) {
   res.json({});
 });
 
-router.post('/answer/event/rtc', function(req, res) {
+router.post('/event/rtc', function(req, res) {
   res.json({});
 });
 

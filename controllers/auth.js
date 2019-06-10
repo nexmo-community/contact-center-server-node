@@ -4,6 +4,9 @@ exports.login_get = function(req, res) {
   if (typeof req.nexmo === 'object') {
     res.redirect('/app');
   } else {
+    if (typeof req.query.logout !== 'undefined') {
+      req.flash('info', 'Logged out!');
+    }
     res.render('login', { title: 'Login', layout: 'login' });
   }
 }
@@ -24,6 +27,7 @@ exports.login_post = function(req, res) {
         req.flash('alert', 'Api credentials are invalid.');
         res.redirect('/login');
       } else {
+        req.flash('info', 'Logged in!');
         req.session.apiKey = api_key;
         req.session.apiSecret = api_secret;
         req.session.save();
@@ -35,5 +39,5 @@ exports.login_post = function(req, res) {
 
 exports.logout_get = function(req, res) {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('/login?logout=true');
 }

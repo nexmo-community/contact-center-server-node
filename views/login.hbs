@@ -1,13 +1,13 @@
-        <form class="form-auth" action="/login" method="POST">
-          <img class="mb-4" src="images/nexmo.png" style="width:150px;" />
-          {{> flash }}
-          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-          <label for="inputEmail" class="sr-only">API key</label>
-          <input type="text" name="api_key" class="form-control" placeholder="API key" required="" autofocus="">
-          <label for="inputPassword" class="sr-only">API secret</label>
-          <input type="password" name="api_secret" class="form-control" placeholder="API secret" required="">
-          <div class="mb-3 small">
-            Your credentials are available on your <a href="https://dashboard.nexmo.com/getting-started-guide">Nexmo Dashboard</a>. They are not stored on this server but rather used to communicate with the Nexmo server.
-          </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
+<form class="form-auth" action="/login" method="POST">
+  <img class="mb-4" src="/images/nexmo.png" style="width:250px;" />
+  {{> flash }}
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">API key</label>
+  <input type="text" name="api_key" class="form-control" placeholder="API key" required="" autofocus="">
+  <label for="inputPassword" class="sr-only">API secret</label>
+  <input type="password" name="api_secret" class="form-control" placeholder="API secret" required="">
+  <div class="mb-3 small">
+    Your credentials are available on your <a href="https://dashboard.nexmo.com/getting-started-guide">Nexmo Dashboard</a>. They are not stored on this server but rather used to communicate with the Nexmo server.
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
