@@ -1,3 +1,7 @@
+## Note
+
+README incomplete, Mongo required. Please configure Mongo server URL in [./bin/www](./bin/www), instructions to follow.
+
 # Nexmo Client SDK Express Server
 
 To get started with the Nexmo Client SDK, you can use this server as a basis for your application's backend. You can run it locally, or deploy it to Heroku:
