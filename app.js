@@ -29,7 +29,15 @@ app.engine('hbs', hbs({
   extname: 'hbs', 
   defaultLayout: 'layout',
   layoutsDir: path.join(__dirname, 'views/layouts'),
-  partialsDir: path.join(__dirname, 'views/partials')
+  partialsDir: path.join(__dirname, 'views/partials'),
+  helpers: {
+    lowercase: function (str) {
+      if(str && typeof str === "string") {
+        return str.toLowerCase();
+      }
+      return '';
+    }
+  }
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

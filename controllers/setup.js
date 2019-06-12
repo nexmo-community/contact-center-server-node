@@ -34,11 +34,19 @@ exports.app_setup_post = function(req, res) {
           req.flash('alert', err);
           res.redirect('/app')
         } else {
+          console.log(response);
+
           var application = new applicationModel({
-            id: response.id,
+            app_id: response.id,
             name: response.name,
-            key: response.keys.public_key,
-            private: response.keys.private_key
+            public_key: response.keys.public_key,
+            private_key: response.keys.private_key,
+
+            voice_answer_url: answerUrl,
+            voice_answer_method: 'GET',
+            voice_answer_ncco: '',
+            voice_event_url: eventUrl,
+            voice_event_method: 'POST'
           });
   
           application.save(function(err) {

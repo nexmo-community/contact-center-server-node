@@ -8,7 +8,10 @@ exports.app_get = function(req, res) {
     } else if (application === null) {
       res.redirect('/app/setup');
     } else {
-      res.render('index', { title: '' });
+      res.render('application', { 
+        title: application.name, 
+        application: application
+      });
     }
   });
 }

@@ -1,0 +1,51 @@
+<div class="float-md-right">
+  <a class="btn btn-sm btn-outline-primary" href="/app/private-key"><i class="fas fa-download"></i> Private key</a>
+  <a class="btn btn-sm btn-outline-primary" href="/app/public-key"><i class="fas fa-download"></i> Public key</a>
+  <a class="btn btn-sm btn-outline-primary" href="/app/edit"><i class="fas fa-pencil-alt"></i> Update NCCO</a>
+</div>
+
+<h1 class="mb-5">{{application.name}}</h1>
+
+<table class="table">
+<tr>
+  <th>App id</th>
+  <td>{{application.app_id}}</td>
+</tr>
+<tr>
+  <th>App name</th>
+  <td>{{application.name}}</td>
+</tr>
+<tr>
+  <th>Answer URL</th>
+  <td>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text input-group-text-{{lowercase application.voice_answer_method}}">{{application.voice_answer_method}}</div>
+      </div>
+      <a class="form-control form-control-url" target="_blank" href="{{application.voice_answer_url}}">{{application.voice_answer_url}}</a>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th>Voice Event URL</th>
+  <td>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text input-group-text-{{lowercase application.voice_event_method}}">{{application.voice_event_method}}</div>
+      </div>
+      <a class="form-control form-control-url" target="_blank" href="{{application.voice_event_url}}">{{application.voice_event_url}}</a>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th>NCCO</th>
+  <td>
+    {{#if application.voice_answer_ncco}}
+      <pre>{{ application.voice_answer_ncco }}</pre>
+    {{else}}
+      <p>Not set</p>
+    {{/if}}
+
+  </td>
+</tr>
+</table>
