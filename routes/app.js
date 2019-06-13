@@ -22,6 +22,9 @@ router.get('/public-key', appController.app_download_public_key);
 // GET app edit
 router.get('/edit', appController.app_edit_get);
 
+// POST app edit
+router.post('/edit', appController.app_edit_post);
+
 // GET app users
 router.get('/users', appController.app_users_get);
 

@@ -1,0 +1,95 @@
+<h1 class="h3 mt-4 text-center">{{application.name}}</h1>
+<h4 class="h6 text-center">{{application.app_id}}</h6>
+
+<form action="/app/edit" accept-charset="UTF-8" method="post">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8 text-center">
+      <div class="form-group">
+        <h3 class="mt-4">Answer NCCO</h3>
+        <p>
+          <span class="btn btn-sm btn-outline-primary" id="nnco-connect-inbound-call">Connect to Agent</span>
+          <span class="btn btn-sm btn-outline-primary" id="nnco-connect-outbound-call">Call a phone number</span>
+          <span class="btn btn-sm btn-outline-primary" id="nnco-connect-agent-ivr">Agent IVR</span>
+        </p>
+        <textarea id="voice_answer_ncco" rows="20" class="form-control pre" required="required" name="voice_answer_ncco">{{application.voice_answer_ncco}}</textarea>
+      </div>
+
+      <input type="submit" name="commit" value="Update" class="btn btn-primary" />
+      <a class="btn btn-secondary" href="/app">Cancel</a>
+
+    </div>
+  </div>
+
+</form>
+<script>
+const targetNCCO = document.querySelector("#voice_answer_ncco");
+
+document.querySelector("#nnco-connect-inbound-call").addEventListener('click', function(event){
+  targetNCCO.value = `[
+    {
+        "action": "talk",
+        "text": "Welcome. Please wait while we connect you..."
+    },
+    {
+        "action": "connect",
+        "endpoint": [
+            {
+                "type": "app",
+                "user": "Jane"
+            }
+        ]
+    }
+]`;
+  event.preventDefault();
+})
+
+document.querySelector("#nnco-connect-agent-ivr").addEventListener('click', function(event){
+  targetNCCO.value = `[
+    {
+        "action": "talk",
+        "text": "Welcome. To connect to the right person, please select one of the following options.",
+        "voiceName": "Amy",
+        "bargeIn": false
+    },
+    {
+        "action": "talk",
+        "text": "Press 1 for Jane, or 2 for Joe, followed by the hash key.",
+        "voiceName": "Amy",
+        "bargeIn": true
+    },
+    {
+        "action": "input",
+        "eventUrl": ["https://nexmo-cc-rails-server.herokuapp.com/webhooks/dtmf"]
+    }
+]`;
+  event.preventDefault();
+})
+
+
+document.querySelector("#nnco-connect-outbound-call").addEventListener('click', function(event){
+  targetNCCO.value = `[
+    {
+        "action": "talk",
+        "text": "Please wait while we connect you."
+    },
+    {
+        "action": "connect",
+        "timeout": 20,
+        "from": "YOUR NEXMO NUMBER",
+        "endpoint": [
+            {
+                "type": "phone",
+                "number": "PARAMS_TO"
+            }
+        ]
+    }
+]`;
+  event.preventDefault();
+});
+
+</script>
+
+
+
+
+

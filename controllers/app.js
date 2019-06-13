@@ -60,9 +60,45 @@ exports.app_download_public_key = function(req, res) {
 }
 
 exports.app_edit_get = function(req, res) {
-  res.render('index', { title: '' });
+  applicationModel.findOne({}, (err, application) => {
+    if (err) {
+      req.flash('alert', err);
+      res.redirect('/app');
+    } else if (application === null) {
+      res.redirect('/app');
+    } else {
+      res.render('edit_application', { 
+        title: application.name, 
+        application: application
+      });
+    }
+  });
 }
 
+exports.app_edit_post = function(req, res) {
+  const { voice_answer_ncco } = req.body;
+
+  applicationModel.findOne({}, (err, application) => {
+    if (err) {
+      req.flash('alert', err);
+      res.redirect('/app');
+    } else if (application === null) {
+      res.redirect('/app');
+    } else {
+      application.voice_answer_ncco = voice_answer_ncco;
+
+      application.save(function(err) {
+        if (err) {
+          req.flash('alert', err);
+          res.redirect('/app')
+        } else {
+          req.flash('info', 'Nexmo app was successfully updated.')
+          res.redirect('/app');
+        }
+      });
+    }
+  });
+}
 exports.app_users_get = function(req, res) {
   res.render('index', { title: '' });
 }
