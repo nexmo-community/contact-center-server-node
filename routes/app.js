@@ -13,6 +13,12 @@ router.get('/', appController.app_get);
 // GET app reset
 router.get('/reset', appController.app_reset_get);
 
+// GET app download private key
+router.get('/private-key', appController.app_download_private_key);
+
+// GET app download public key
+router.get('/public-key', appController.app_download_public_key);
+
 // GET app edit
 router.get('/edit', appController.app_edit_get);
 

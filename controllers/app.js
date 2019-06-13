@@ -1,4 +1,17 @@
 var applicationModel = require('../models/application');
+var stream = require('stream');
+
+const downloadData = (res, fileData, fileName) => {
+  var fileContents = Buffer.from(fileData, "base64");
+
+  var readStream = new stream.PassThrough();
+  readStream.end(fileContents);
+
+  res.set('Content-disposition', 'attachment; filename=' + fileName);
+  res.set('Content-Type', 'text/plain');
+
+  readStream.pipe(res);
+}
 
 exports.app_get = function(req, res) {
   applicationModel.findOne({}, (err, application) => {
@@ -23,6 +36,26 @@ exports.app_reset_get = function(req, res) {
     }
 
     res.redirect('/app');
+  });
+}
+
+exports.app_download_private_key = function(req, res) {
+  applicationModel.findOne({}, (err, application) => {
+    if (err) {
+      res.redirect('/app');
+    } else {
+      downloadData(res, application.private_key, 'private.key');
+    }
+  });
+}
+
+exports.app_download_public_key = function(req, res) {
+  applicationModel.findOne({}, (err, application) => {
+    if (err) {
+      res.redirect('/app');
+    } else {
+      downloadData(res, application.public_key, 'public.key');
+    }
   });
 }
 
