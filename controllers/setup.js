@@ -27,7 +27,7 @@ exports.app_setup_post = function(req, res) {
     } else {
       const appUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
       const answerUrl = `${appUrl}/webhooks/answer`;
-      const eventUrl = `${appUrl}/webhooks/event/voice`;
+      const eventUrl = `${appUrl}/webhooks/event`;
   
       req.nexmo.createApp(app_name, 'voice', answerUrl, eventUrl, {}, (err, response) => {
         if (err) {
