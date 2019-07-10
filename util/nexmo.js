@@ -16,9 +16,9 @@ Nexmo.prototype.createApp = function createApp(name, type, answerUrl, eventUrl, 
   return this.nexmo.applications.create(name, type, answerUrl, eventUrl, options, callback);
 };
 
-// Nexmo.prototype.balance = function apps(callback) {
-//   return this.nexmo.account.checkBalance(callback);
-// };
+Nexmo.prototype.balance = function balance(callback) {
+  return this.nexmo.account.checkBalance(callback);
+};
 
 
 

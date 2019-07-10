@@ -2,15 +2,29 @@ const Nexmo = require('./nexmo');
 
 function auth() {
   return function auth (req, res, next) {
-    if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
-      const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret);
-      nexmo.apps({}, (err, apps) => {
-        if (err || typeof apps !== 'object') {
-          req.session.destroy();
+    if (req.method === 'GET') {
+      if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
+        const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret);
+        nexmo.apps({}, (err, apps) => {
+          if (err || typeof apps !== 'object') {
+            req.session.destroy();
+          }
+        });
+  
+        req.nexmo = nexmo;
+  
+        if (typeof req.session.balance === 'undefined') {
+          nexmo.balance((err, balance) => {
+            if (err) {
+            }
+            if (balance) {
+              console.log(req.session, balance.value)
+              req.session.balance = balance.value;
+              console.log(req.session, balance.value)
+            }
+          })
         }
-      });
-
-      req.nexmo = nexmo;
+      }
     }
 
     next();

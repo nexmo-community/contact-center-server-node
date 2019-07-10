@@ -21,7 +21,8 @@ exports.login_post = function(req, res) {
     const nexmo = new Nexmo(api_key, api_secret);
     nexmo.apps({}, (err, apps) => {
       if (err) {
-        req.flash('alert', `${err.body.error_title}.`);
+        console.error(err);
+        req.flash('alert', 'An error has occured');
         res.redirect('/login');
       } else if (typeof apps !== 'object') {
         req.flash('alert', 'Api credentials are invalid.');

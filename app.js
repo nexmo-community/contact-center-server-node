@@ -31,8 +31,8 @@ app.engine('hbs', hbs({
   layoutsDir: path.join(__dirname, 'views/layouts'),
   partialsDir: path.join(__dirname, 'views/partials'),
   helpers: {
-    lowercase: function (str) {
-      if(str && typeof str === "string") {
+    lowercase: (str) => {
+      if(str && typeof str === 'string') {
         return str.toLowerCase();
       }
       return '';
@@ -80,6 +80,12 @@ app.use(flash());
  * Static public content
  */
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use((req, res, next) => {
+  res.locals.req = req;
+  next();
+})
 
 /**
  * App Routes
