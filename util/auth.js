@@ -18,9 +18,7 @@ function auth() {
             if (err) {
             }
             if (balance) {
-              console.log(req.session, balance.value)
               req.session.balance = balance.value;
-              console.log(req.session, balance.value)
             }
           })
         }

@@ -34,8 +34,6 @@ exports.app_setup_post = function(req, res) {
           req.flash('alert', err);
           res.redirect('/app')
         } else {
-          console.log(response);
-
           var application = new applicationModel({
             app_id: response.id,
             name: response.name,
