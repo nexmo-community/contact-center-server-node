@@ -28,6 +28,7 @@ exports.app_setup_post = function(req, res) {
       const appUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
       const answerUrl = `${appUrl}/webhooks/answer`;
       const eventUrl = `${appUrl}/webhooks/event`;
+      const dtmfUrl = `${appUrl}/webhooks/dtmf`;
   
       req.nexmo.createApp(app_name, 'voice', answerUrl, eventUrl, {}, (err, response) => {
         if (err) {
@@ -39,12 +40,16 @@ exports.app_setup_post = function(req, res) {
             name: response.name,
             public_key: response.keys.public_key,
             private_key: response.keys.private_key,
+            number_msisdn: '',
+            number_country: '',
+            type: 'custom',
 
             voice_answer_url: answerUrl,
             voice_answer_method: 'GET',
             voice_answer_ncco: '',
             voice_event_url: eventUrl,
-            voice_event_method: 'POST'
+            voice_event_method: 'POST',
+            dtmf_url: dtmfUrl
           });
   
           application.save(function(err) {

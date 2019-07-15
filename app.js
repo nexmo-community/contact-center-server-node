@@ -36,6 +36,23 @@ app.engine('hbs', hbs({
         return str.toLowerCase();
       }
       return '';
+    },
+    ifeq: (a, b, opts) => {
+      if (a === b) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
+    },
+    ifneq: (a, b, opts) => {
+      if (a !== b) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
+    },
+    json: (object) => {
+      return JSON.stringify(object, null, 2);
     }
   }
 }));
@@ -80,12 +97,6 @@ app.use(flash());
  * Static public content
  */
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-app.use((req, res, next) => {
-  res.locals.req = req;
-  next();
-})
 
 /**
  * App Routes

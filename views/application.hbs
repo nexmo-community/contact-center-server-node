@@ -38,13 +38,48 @@
   </td>
 </tr>
 <tr>
+  <th>Phone number</th>
+  <td>
+    {{#if application.number_msisdn}}
+      {{application.number_msisdn}} ({{application.number_country}})
+    {{else}}
+      <a class="btn btn-sm btn-outline-primary" href="/numbers"><i class="fas fa-plus"></i> Add</a>
+    {{/if}}
+  </td>
+</tr>
+<tr>
   <th>NCCO</th>
   <td>
-    {{#if application.voice_answer_ncco}}
-      <pre>{{ application.voice_answer_ncco }}</pre>
+    <p>
+      Change for:
+      <a class="btn btn-{{#ifneq application.type 'custom'}}outline-{{/ifneq}}primary btn-sm" rel="nofollow" href="/app/ncco/custom">Custom</a>
+      <a class="btn btn-{{#ifneq application.type 'inbound_call'}}outline-{{/ifneq}}primary btn-sm" rel="nofollow" href="/app/ncco/inbound_call">Inbound Call</a>
+      <a class="btn btn-{{#ifneq application.type 'outbound_call'}}outline-{{/ifneq}}primary btn-sm" rel="nofollow" href="/app/ncco/outbound_call">Outbound Call</a>
+      <a class="btn btn-{{#ifneq application.type 'ivr'}}outline-{{/ifneq}}primary btn-sm" rel="nofollow" href="/app/ncco/ivr">IVR</a>
+    </p>
+    {{#ifeq application.type 'custom'}}
+      <h5>Custom NCCO&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-primary btn-sm" rel="nofollow" href="/app/edit">Edit</a></h5>
+    {{/ifeq}}
+    {{#ifeq application.type 'inbound_call'}}
+      <h5>Inbound call</h5>
+    {{/ifeq}}
+    {{#ifeq application.type 'outbound_call'}}
+      <h5>Outbound call</h5>
+    {{/ifeq}}
+    {{#ifeq application.type 'ivr'}}
+      <h5>IVR - Main menu</h5>
+    {{/ifeq}}
+    {{#if application.ncco }}
+      <pre>{{{json application.ncco}}}</pre>
     {{else}}
       <p>Not set</p>
     {{/if}}
+    {{#ifeq application.type 'ivr'}}
+      <h5>Jane selection</h5>
+      <pre>{"something": "something else"}</pre>
+      <h5>Joe selection</h5>
+      <pre>{"something": "something else"}</pre>
+    {{/ifeq}}
   </td>
 </tr>
 </table>

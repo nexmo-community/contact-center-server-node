@@ -31,4 +31,7 @@ router.get('/users', appController.app_users_get);
 // GET app number
 router.get('/number', appController.app_number_get);
 
+// GET app ncco
+router.get('/ncco/:type', appController.app_ncco);
+
 module.exports = router;
