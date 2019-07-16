@@ -93,6 +93,7 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(flash());
+app.set('json spaces', 2);
 
 /**
  * Static public content

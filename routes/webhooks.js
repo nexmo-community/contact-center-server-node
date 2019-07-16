@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/answer', function(req, res) {
-  res.json({});
-});
+var webhooksController = require('../controllers/webhooks');
 
-router.post('/event/voice', function(req, res) {
-  res.json({});
-});
+/**
+ * Webhooks Routes
+ */
 
-router.post('/event/rtc', function(req, res) {
-  res.json({});
-});
+// GET webhooks answer
+router.get('/answer', webhooksController.webhooks_answer_get);
+
+// POST webhooks event
+router.post('/event', webhooksController.webhooks_event_post);
+
+// GET webhooks dtmf
+router.get('/dtmf', webhooksController.webhooks_dtmf_get);
 
 module.exports = router;

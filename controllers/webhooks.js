@@ -1,8 +1,21 @@
-var express = require('express');
-var router = express.Router();
+var applicationModel = require('../models/application');
 
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+exports.webhooks_answer_get = function(req, res) {
+  applicationModel.findOne({}, (err, application) => {
+    if (err) {
+      res.json({'error': 'An error occured.'});
+    } else if (application === null) {
+      res.json({'error': 'No application configured.'});
+    } else {
+      res.json(application.ncco);
+    }
+  });
+}
 
-module.exports = router;
+exports.webhooks_event_post = (req, res) => {
+  res.json([]);
+}
+
+exports.webhooks_dtmf_get = (req, res) => {
+  res.json([]);
+}

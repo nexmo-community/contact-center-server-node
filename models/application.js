@@ -5,7 +5,7 @@ ApplicationSchema
   .virtual('ncco')
   .get(function () {
     const nccos = {
-      'custom': this.voice_answer_ncco,
+      'custom': JSON.parse(this.voice_answer_ncco || []),
       'inbound_call': [
         {
           "action": "talk",
