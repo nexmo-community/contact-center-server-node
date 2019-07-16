@@ -104,10 +104,6 @@ exports.app_users_get = function(req, res) {
   res.render('index', { title: '' });
 }
 
-exports.app_number_get = function(req, res) {
-  res.render('index', { title: '' });
-}
-
 exports.app_ncco = function(req, res) {
   const { type } = req.params;
 
@@ -125,7 +121,7 @@ exports.app_ncco = function(req, res) {
         } else {
           req.flash('info', `App NCCO type was successfully changed to ${type}.`);
         }
-        
+
         res.redirect('/app');
       });
     }

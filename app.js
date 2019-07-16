@@ -12,6 +12,7 @@ require('dotenv').config();
 
 var apiRouter = require('./routes/api');
 var appRouter = require('./routes/app');
+var numbersRouter = require('./routes/numbers');
 var eventRouter = require('./routes/event');
 var indexRouter = require('./routes/index');
 var setupRouter = require('./routes/setup');
@@ -104,6 +105,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/app', auth.secure(), appRouter);
+app.use('/numbers', auth.secure(), numbersRouter);
 app.use('/app/events', auth.secure(), eventRouter);
 app.use('/app/setup', auth.secure(), setupRouter);
 app.use('/webhooks', webhooksRouter);
