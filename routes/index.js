@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var indexController = require('../controllers/index');
-var authController = require('../controllers/auth');
+const indexController = require('../controllers/index');
+const authController = require('../controllers/auth');
 
 /**
  * Index Routes

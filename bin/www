@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('contact-center:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('contact-center:server');
+const http = require('http');
 
 /**
  * Dot Env
@@ -15,32 +15,11 @@ var http = require('http');
 require('dotenv').config();
 
 /**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
+const normalizePort = (val) => {
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -56,15 +35,28 @@ function normalizePort(val) {
 }
 
 /**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app);
+
+/**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -87,25 +79,33 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+const onListening = () => {
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
 
 /**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
  * Database config
  */
 
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
  
 //Set up default mongoose connection
 mongoose.connect('mongodb://127.0.0.1:27017/cc-server', {useNewUrlParser: true});
 
 //Get the default connection
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', onError);

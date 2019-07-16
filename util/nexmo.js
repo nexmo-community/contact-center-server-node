@@ -20,6 +20,21 @@ Nexmo.prototype.balance = function balance(callback) {
   return this.nexmo.account.checkBalance(callback);
 };
 
+Nexmo.prototype.getNumbers = function getNumbers(callback) {
+  return this.nexmo.number.get({}, callback);
+};
 
+Nexmo.prototype.linkNumber = function linkNumber(countryCode, msisdn, app_id, callback) {
+  return this.nexmo.number.update(countryCode, msisdn, {
+    voiceCallbackType: 'app',
+    voiceCallbackValue: app_id
+  }, callback);
+}
+
+Nexmo.prototype.unlinkNumber = function unlinkNumber(countryCode, msisdn, callback) {
+  return this.nexmo.number.update(countryCode, msisdn, {
+    voiceCallbackType: 'app'
+  }, callback);
+}
 
 module.exports = Nexmo;

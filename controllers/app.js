@@ -1,10 +1,10 @@
-var applicationModel = require('../models/application');
-var stream = require('stream');
+const applicationModel = require('../models/application');
+const stream = require('stream');
 
 const downloadData = (res, fileData, fileName) => {
-  var fileContents = Buffer.from(fileData, "base64");
+  const fileContents = Buffer.from(fileData, "base64");
 
-  var readStream = new stream.PassThrough();
+  const readStream = new stream.PassThrough();
   readStream.end(fileContents);
 
   res.set('Content-disposition', 'attachment; filename=' + fileName);
@@ -13,7 +13,7 @@ const downloadData = (res, fileData, fileName) => {
   readStream.pipe(res);
 }
 
-exports.app_get = function(req, res) {
+exports.app_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       req.flash('alert', err);
@@ -29,7 +29,7 @@ exports.app_get = function(req, res) {
   });
 }
 
-exports.app_reset_get = function(req, res) {
+exports.app_reset_get = (req, res) => {
   applicationModel.deleteMany({}, (err) => {
     if (err) {
       req.flash('alert', err);
@@ -39,7 +39,7 @@ exports.app_reset_get = function(req, res) {
   });
 }
 
-exports.app_download_private_key = function(req, res) {
+exports.app_download_private_key = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       res.redirect('/app');
@@ -49,7 +49,7 @@ exports.app_download_private_key = function(req, res) {
   });
 }
 
-exports.app_download_public_key = function(req, res) {
+exports.app_download_public_key = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       res.redirect('/app');
@@ -59,7 +59,7 @@ exports.app_download_public_key = function(req, res) {
   });
 }
 
-exports.app_edit_get = function(req, res) {
+exports.app_edit_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       req.flash('alert', err);
@@ -75,7 +75,7 @@ exports.app_edit_get = function(req, res) {
   });
 }
 
-exports.app_edit_post = function(req, res) {
+exports.app_edit_post = (req, res) => {
   const { voice_answer_ncco } = req.body;
 
   applicationModel.findOne({}, (err, application) => {
@@ -87,7 +87,7 @@ exports.app_edit_post = function(req, res) {
     } else {
       application.voice_answer_ncco = voice_answer_ncco;
 
-      application.save(function(err) {
+      application.save((err) => {
         if (err) {
           req.flash('alert', err);
           res.redirect('/app')
@@ -100,11 +100,11 @@ exports.app_edit_post = function(req, res) {
   });
 }
 
-exports.app_users_get = function(req, res) {
+exports.app_users_get = (req, res) => {
   res.render('index', { title: '' });
 }
 
-exports.app_ncco = function(req, res) {
+exports.app_ncco = (req, res) => {
   const { type } = req.params;
 
   applicationModel.findOne({}, (err, application) => {

@@ -1,6 +1,6 @@
 var applicationModel = require('../models/application');
 
-exports.webhooks_answer_get = function(req, res) {
+exports.webhooks_answer_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       res.json({'error': 'An error occured.'});

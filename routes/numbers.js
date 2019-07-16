@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var numbersController = require('../controllers/numbers');
+const numbersController = require('../controllers/numbers');
 
 /**
  * Numbers Routes
@@ -10,7 +10,13 @@ var numbersController = require('../controllers/numbers');
 // GET numbers
 router.get('/', numbersController.numbers_get);
 
-// POST numbers
+// GET add number
+router.get('/add/:country/:msisdn', numbersController.number_add_get);
+
+// GET remove number
+router.get('/remove/:country/:msisdn', numbersController.number_remove_get);
+
+// POST numbers search
 router.post('/search', numbersController.numbers_search_post);
 
 module.exports = router;

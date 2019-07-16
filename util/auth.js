@@ -1,7 +1,7 @@
 const Nexmo = require('./nexmo');
 
-function auth() {
-  return function auth (req, res, next) {
+const auth = () => {
+  return (req, res, next) => {
     if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
       const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret);
       nexmo.apps({}, (err, apps) => {
@@ -27,8 +27,8 @@ function auth() {
   }
 }
 
-function secure() {
-  return function secure (req, res, next) {
+const secure = () => {
+  return (req, res, next) => {
     if (typeof req.nexmo !== 'object') {
       res.redirect('/login');
     } else {

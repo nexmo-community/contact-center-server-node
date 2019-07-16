@@ -1,6 +1,6 @@
 const Nexmo = require('../util/nexmo');
 
-exports.login_get = function(req, res) {
+exports.login_get = (req, res) => {
   if (typeof req.nexmo === 'object') {
     res.redirect('/app');
   } else {
@@ -11,7 +11,7 @@ exports.login_get = function(req, res) {
   }
 }
 
-exports.login_post = function(req, res) {
+exports.login_post = (req, res) => {
   const { api_key, api_secret } = req.body;
 
   if (typeof api_key === 'undefined' || typeof api_secret === 'undefined') {
@@ -38,7 +38,7 @@ exports.login_post = function(req, res) {
   }
 }
 
-exports.logout_get = function(req, res) {
+exports.logout_get = (req, res) => {
   req.session.destroy();
   res.redirect('/login?logout=true');
 }

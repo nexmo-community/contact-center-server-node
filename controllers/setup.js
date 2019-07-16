@@ -1,6 +1,6 @@
-var applicationModel = require('../models/application');
+const applicationModel = require('../models/application');
 
-exports.app_setup_get = function(req, res) {
+exports.app_setup_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
     if (err) {
       req.flash('alert', err);
@@ -13,7 +13,7 @@ exports.app_setup_get = function(req, res) {
   });
 }
 
-exports.app_setup_post = function(req, res) {
+exports.app_setup_post = (req, res) => {
   const { app_name } = req.body;
 
   applicationModel.findOne((err, application) => {
@@ -35,7 +35,7 @@ exports.app_setup_post = function(req, res) {
           req.flash('alert', err);
           res.redirect('/app')
         } else {
-          var application = new applicationModel({
+          const application = new applicationModel({
             app_id: response.id,
             name: response.name,
             public_key: response.keys.public_key,
@@ -52,7 +52,7 @@ exports.app_setup_post = function(req, res) {
             dtmf_url: dtmfUrl
           });
   
-          application.save(function(err) {
+          application.save((err) => {
             if (err) {
               req.flash('alert', err);
               res.redirect('/app')

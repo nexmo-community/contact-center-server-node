@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var setupController = require('../controllers/setup');
+const setupController = require('../controllers/setup');
 
 /**
  * Setup Routes

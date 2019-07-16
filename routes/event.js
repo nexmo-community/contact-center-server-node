@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var eventController = require('../controllers/event');
+const eventController = require('../controllers/event');
 
 /**
  * App Event Routes

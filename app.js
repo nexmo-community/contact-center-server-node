@@ -1,27 +1,28 @@
-var auth = require('./util/auth');
-var cookieParser = require('cookie-parser');
-var createError = require('http-errors');
-var express = require('express');
-var flash = require('express-flash');
-var hbs = require('express-handlebars');
-var logger = require('morgan');
-var path = require('path');
-var sassMiddleware = require('node-sass-middleware');
-var session = require('express-session');
+const auth = require('./util/auth');
+const cookieParser = require('cookie-parser');
+const createError = require('http-errors');
+const express = require('express');
+const flash = require('express-flash');
+const hbs = require('express-handlebars');
+const helpers = require('./util/helpers');
+const logger = require('morgan');
+const path = require('path');
+const sassMiddleware = require('node-sass-middleware');
+const session = require('express-session');
 require('dotenv').config();
 
-var apiRouter = require('./routes/api');
-var appRouter = require('./routes/app');
-var numbersRouter = require('./routes/numbers');
-var eventRouter = require('./routes/event');
-var indexRouter = require('./routes/index');
-var setupRouter = require('./routes/setup');
-var webhooksRouter = require('./routes/webhooks');
+const apiRouter = require('./routes/api');
+const appRouter = require('./routes/app');
+const numbersRouter = require('./routes/numbers');
+const eventRouter = require('./routes/event');
+const indexRouter = require('./routes/index');
+const setupRouter = require('./routes/setup');
+const webhooksRouter = require('./routes/webhooks');
 
 /**
  * Express Setup
  */
-var app = express();
+const app = express();
 
 /**
  * Template engine setup
@@ -31,31 +32,7 @@ app.engine('hbs', hbs({
   defaultLayout: 'layout',
   layoutsDir: path.join(__dirname, 'views/layouts'),
   partialsDir: path.join(__dirname, 'views/partials'),
-  helpers: {
-    lowercase: (str) => {
-      if(str && typeof str === 'string') {
-        return str.toLowerCase();
-      }
-      return '';
-    },
-    ifeq: (a, b, opts) => {
-      if (a === b) {
-        return opts.fn(this);
-      } else {
-        return opts.inverse(this);
-      }
-    },
-    ifneq: (a, b, opts) => {
-      if (a !== b) {
-        return opts.fn(this);
-      } else {
-        return opts.inverse(this);
-      }
-    },
-    json: (object) => {
-      return JSON.stringify(object, null, 2);
-    }
-  }
+  helpers: helpers
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -63,7 +40,7 @@ app.set('view engine', 'hbs');
 /**
  * Session Setup
  */
-var sess = {
+const sess = {
   secret: process.env.SESSION_SECRET || 'yoursecrethere',
   cookie: { maxAge: 60000 },
   proxy: true,
@@ -114,14 +91,14 @@ app.use('/webhooks', webhooksRouter);
 /**
  * Catch 404 and forward to error handler
  */
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 /**
  * Error handler
  */
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

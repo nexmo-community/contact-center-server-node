@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.post('/jwt', function(req, res) {
+router.post('/jwt', (req, res) => {
   res.json({'jwt': 'json.web.token'});
 });
 

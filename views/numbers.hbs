@@ -1,8 +1,8 @@
 <div class="row mb-4">
   <div class="col-12 col-lg-6">
     <h1>Numbers</h1>
-    {{#if application.number_msisdn }}
-      <h4>Number in use: {{application.number_msisdn}} (application.number_country)</h4>
+    {{#if app.number_msisdn }}
+      <h4>Number in use: {{app.number_msisdn}} ({{app.number_country}})</h4>
     {{/if}}
   </div>
   <div class="col-12 col-lg-6 text-lg-right">
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-{{#unless application.number_msisdn }}
+{{#unless app.number_msisdn }}
   <p class="alert alert-info">No Number in use</p>
 {{/unless}}
 
@@ -40,18 +40,21 @@
       <tr>
         <td>{{number.msisdn}}</td>
         <td>{{number.country}}</td>
-        <td>{{number.features}}</td>
+        <td>{{json number.features}}</td>
         <td>
-          {{!-- <% if !number.features.include?("VOICE") %>
+          {{#includes number.features 'VOICE'}}
+            {{#unless number.voiceCallbackValue}}
+              <a class="btn btn-sm btn-danger" href="/numbers/add/{{number.country}}/{{number.msisdn}}">Link</a>
+            {{else}}
+              {{#ifeq number.voiceCallbackValue ../../app.app_id}}
+                <a class="btn btn-sm btn-warning" rel="nofollow" data-method="post" href="/numbers/remove/{{number.country}}/{{number.msisdn}}">Unlink</a>
+              {{else}}
+                Number already in use.
+              {{/ifeq}}
+            {{/unless}}
+          {{else}}
             No voice capability.
-          <% elsif number.voiceCallbackValue.blank? %>
-            <%= link_to "Link", numbers_add_path(country: number.country, msisdn: number.msisdn), method: :post, class: 'btn btn-sm btn-danger' %>
-          <% elsif number.voiceCallbackValue == @nexmo_app.app_id %>
-            <strong>Linked.</strong>
-            <%= link_to "Unlink", numbers_remove_path(country: number.country, msisdn: number.msisdn), method: :post, class: 'btn btn-sm btn-warning' %>
-          <% else %>
-            Number already in use.
-          <% end %> --}}
+          {{/includes}}
         </td>
       </tr>
     {{/each}}
