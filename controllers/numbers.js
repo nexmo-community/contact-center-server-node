@@ -45,10 +45,10 @@ exports.number_add_get = (req, res) => {
           application.save((err) => {
             if (err) {
               req.flash('alert', err);
-              res.redirect('/numbers')
+              res.redirect('/numbers');
             } else {
               req.flash('info', ` ${msisdn} was successfully assigned to the app.`);
-              res.redirect('/numbers')
+              res.redirect('/numbers');
             }
           });
         }
@@ -77,10 +77,10 @@ exports.number_remove_get = (req, res) => {
           application.save((err) => {
             if (err) {
               req.flash('alert', err);
-              res.redirect('/numbers')
+              res.redirect('/numbers');
             } else {
               req.flash('info', ` ${msisdn} was successfully removed from the app.`);
-              res.redirect('/numbers')
+              res.redirect('/numbers');
             }
           });
         }
@@ -90,5 +90,28 @@ exports.number_remove_get = (req, res) => {
 };
 
 exports.numbers_search_post = (req, res) => {
-  res.render('numbers', { title: 'Numbers' });
+  const { country } = req.body;
+
+  req.nexmo.searchNumbers(country, (err, result) => {
+    const { numbers } = result;
+    if (err) {
+      req.flash('alert', err);
+      res.redirect('/numbers');
+    } else {
+      res.render('numbers_search', { title: 'Numbers', numbers: numbers, country: country });
+    }
+  });
+}
+
+exports.numbers_buy_post = (req, res) => {
+  const { country, msisdn } = req.body;
+
+  req.nexmo.buyNumber(country, msisdn, (err) => {
+    if (err) {
+      req.flash('alert', err);
+    } else {
+      req.flash('info', ` ${msisdn} was successfully purchased.`);
+    }
+    res.redirect('/numbers');
+  });
 }

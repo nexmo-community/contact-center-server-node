@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/jwt', (req, res) => {
-  res.json({'jwt': 'json.web.token'});
-});
+const apiController = require('../controllers/api');
+
+/**
+ * Api Routes
+ */
+
+// GET api
+router.get('/', apiController.api_get);
 
 module.exports = router;

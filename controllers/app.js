@@ -100,10 +100,6 @@ exports.app_edit_post = (req, res) => {
   });
 }
 
-exports.app_users_get = (req, res) => {
-  res.render('index', { title: '' });
-}
-
 exports.app_ncco = (req, res) => {
   const { type } = req.params;
 

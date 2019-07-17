@@ -1,0 +1,53 @@
+<div class="row mb-4">
+  <div class="col-12 col-lg-6">
+    <h1>Numbers Available in {{country}}</h1>
+  </div>
+  <div class="col-12 col-lg-6 text-lg-right">
+    <form action="/numbers/search" method="POST">
+      Buy number in 
+      <select name="country" id="country">
+        <option {{#ifeq country 'GB'}}selected="selected" {{/ifeq}}value="GB">GB</option>
+        <option {{#ifeq country 'USA'}}selected="selected" {{/ifeq}}value="USA">USA</option>
+        <option {{#ifeq country 'FR'}}selected="selected" {{/ifeq}}value="FR">FR</option>
+        <option {{#ifeq country 'GE'}}selected="selected" {{/ifeq}}value="GE">GE</option>
+      </select>
+      <input type="submit" name="commit" value="Search" class="btn btn-sm btn-primary">
+    </form>
+  </div>
+</div>
+
+{{#unless numbers}}
+  <p>Nothing found</p>
+{{else}}
+  <table class="table table-sm table-borderless table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Country</th>
+        <th scope="col">Features</th>
+        <th scope="col">Type</th>
+        <th scope="col">Cost</th>
+        <th scope="col">&nbsp;</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each numbers as |number key|}}
+        <tr>
+          <td>{{number.msisdn}}</td>
+          <td>{{number.country}}</td>
+          <td>{{json number.features}}</td>
+          <td>{{number.type}}</td>
+          <td>{{number.cost}}</td>
+          <td>
+            <form action="/numbers/buy" accept-charset="UTF-8" method="POST">
+              <input type="hidden" name="country" id="country" value="{{number.country}}">
+              <input type="hidden" name="msisdn" id="msisdn" value="{{number.msisdn}}">
+              <input type="submit" name="commit" value="Buy" class="btn btn-sm btn-primary">
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/unless}}

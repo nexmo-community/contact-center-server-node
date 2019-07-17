@@ -19,4 +19,7 @@ router.get('/remove/:country/:msisdn', numbersController.number_remove_get);
 // POST numbers search
 router.post('/search', numbersController.numbers_search_post);
 
+// POST numbers buy
+router.post('/buy', numbersController.numbers_buy_post);
+
 module.exports = router;

@@ -59,14 +59,7 @@ ApplicationSchema
       ]
     };
 
-    let ncco = JSON.stringify(nccos[this.type]);
-
-    if (this.number_msisdn) {
-      ncco = ncco.replace(/YOUR_NEXMO_NUMBER/g, this.number_msisdn);
-    }
-    //ncco.replace(/PARAMS_TO/g, "bar")
-
-    return JSON.parse(ncco);
+    return nccos[this.type];
   });
 
 const Application = mongoose.model('Application', ApplicationSchema);

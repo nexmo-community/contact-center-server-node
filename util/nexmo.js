@@ -37,4 +37,15 @@ Nexmo.prototype.unlinkNumber = function unlinkNumber(countryCode, msisdn, callba
   }, callback);
 }
 
+Nexmo.prototype.searchNumbers = function searchNumbers(countryCode, callback) {
+  return this.nexmo.number.search(countryCode, { 
+    features: 'VOICE', 
+    size: 100
+  }, callback);
+}
+
+Nexmo.prototype.buyNumber = function buyNumber(countryCode, msisdn, callback) {
+  return this.nexmo.number.buy(countryCode, msisdn, callback);
+}
+
 module.exports = Nexmo;

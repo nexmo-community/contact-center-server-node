@@ -47,6 +47,7 @@
               <a class="btn btn-sm btn-danger" href="/numbers/add/{{number.country}}/{{number.msisdn}}">Link</a>
             {{else}}
               {{#ifeq number.voiceCallbackValue ../../app.app_id}}
+                <strong>Linked.</strong>
                 <a class="btn btn-sm btn-warning" rel="nofollow" data-method="post" href="/numbers/remove/{{number.country}}/{{number.msisdn}}">Unlink</a>
               {{else}}
                 Number already in use.

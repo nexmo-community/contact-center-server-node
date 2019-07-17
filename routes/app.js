@@ -25,9 +25,6 @@ router.get('/edit', appController.app_edit_get);
 // POST app edit
 router.post('/edit', appController.app_edit_post);
 
-// GET app users
-router.get('/users', appController.app_users_get);
-
 // GET app ncco
 router.get('/ncco/:type', appController.app_ncco);
 

@@ -11,12 +11,14 @@ const sassMiddleware = require('node-sass-middleware');
 const session = require('express-session');
 require('dotenv').config();
 
+const apiJwtRouter = require('./routes/apiJwt');
 const apiRouter = require('./routes/api');
 const appRouter = require('./routes/app');
-const numbersRouter = require('./routes/numbers');
 const eventRouter = require('./routes/event');
 const indexRouter = require('./routes/index');
+const numbersRouter = require('./routes/numbers');
 const setupRouter = require('./routes/setup');
+const usersRouter = require('./routes/users');
 const webhooksRouter = require('./routes/webhooks');
 
 /**
@@ -81,12 +83,15 @@ app.use(express.static(path.join(__dirname, 'public')));
  * App Routes
  */
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
+app.use('/api/jwt', apiJwtRouter);
+app.use('/webhooks', webhooksRouter);
+
+app.use('/api', auth.secure(), apiRouter);
 app.use('/app', auth.secure(), appRouter);
-app.use('/numbers', auth.secure(), numbersRouter);
 app.use('/app/events', auth.secure(), eventRouter);
 app.use('/app/setup', auth.secure(), setupRouter);
-app.use('/webhooks', webhooksRouter);
+app.use('/numbers', auth.secure(), numbersRouter);
+app.use('/users', auth.secure(), usersRouter);
 
 /**
  * Catch 404 and forward to error handler

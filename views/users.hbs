@@ -1,0 +1,28 @@
+<div class="row mb-4">
+  <div class="col-12 col-lg-6">
+    <h1>Users</h1>
+  </div>
+  <div class="col-12 col-lg-6 text-lg-right">
+    <a class="btn btn-sm btn-outline-primary" href="/users/new">New User</a>
+  </div>
+</div>
+
+<hr />
+
+<table class="table table-sm table-borderless table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User id</th>
+      <th scope="col">User name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each users as |user key|}}
+      <tr>
+        <td>{{user.user_id}}</td>
+        <td>{{user.username}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
