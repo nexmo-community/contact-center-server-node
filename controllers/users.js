@@ -11,11 +11,14 @@ exports.users_new_get = (req, res) => {
 exports.users_new_post = (req, res) => {
   const { username } = req.body;
   
-  if (err) {
-    req.flash('alert', err);
-  } else {
-    req.flash('info', ` ${username} was successfully created.`);
-  }
+  req.nexmo.createUser(username, (err, user) => {
+    console.log(user);
+    if (err) {
+      req.flash('alert', err);
+    } else {
+      req.flash('info', ` ${username} was successfully created.`);
+    }
+  });
 
   res.redirect('/users');
 }

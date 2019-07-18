@@ -1,11 +1,27 @@
 require('dotenv').config();
 const NexmoApi = require('nexmo');
 
+const applicationModel = require('../models/application');
+
 function Nexmo(apiKey, apiSecret, options) {
-  this.nexmo = new NexmoApi({
-    apiKey: apiKey,
-    apiSecret: apiSecret
-  }, options);
+  applicationModel.findOne({}, (err, application) => {
+    let params = {};
+    if (application) {
+      params = {
+        apiKey: apiKey,
+        apiSecret: apiSecret,
+        applicationId: application.app_id,
+        privateKey: application.private_key
+      };
+    } else {
+      params = {
+        apiKey: apiKey,
+        apiSecret: apiSecret
+      };
+    }
+
+    this.nexmo = new NexmoApi(params, options);
+  });
 }
 
 Nexmo.prototype.apps = function apps(options, callback) {
@@ -46,6 +62,13 @@ Nexmo.prototype.searchNumbers = function searchNumbers(countryCode, callback) {
 
 Nexmo.prototype.buyNumber = function buyNumber(countryCode, msisdn, callback) {
   return this.nexmo.number.buy(countryCode, msisdn, callback);
+}
+
+Nexmo.prototype.createUser = function createUser(username, callback) {
+  return this.nexmo.users.create({
+    name: username,
+    display_name: username
+  }, callback);
 }
 
 module.exports = Nexmo;
