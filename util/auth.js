@@ -4,6 +4,7 @@ const auth = () => {
   return (req, res, next) => {
     if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
       const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret);
+
       nexmo.apps({}, (err, apps) => {
         if (err || typeof apps !== 'object') {
           req.session.destroy();
