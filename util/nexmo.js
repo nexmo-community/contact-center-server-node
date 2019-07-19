@@ -3,6 +3,8 @@ const NexmoApi = require('nexmo');
 
 const Nexmo = class {
   constructor(apiKey, apiSecret, application, options) {
+    this.application = application;
+
     if (application) {
       this.nexmo = new NexmoApi({
         apiKey: apiKey,
@@ -39,31 +41,31 @@ const Nexmo = class {
       voiceCallbackType: 'app',
       voiceCallbackValue: app_id
     }, callback);
-  }
+  };
 
   unlinkNumber(countryCode, msisdn, callback) {
     return this.nexmo.number.update(countryCode, msisdn, {
       voiceCallbackType: 'app'
     }, callback);
-  }
+  };
 
   searchNumbers(countryCode, callback) {
     return this.nexmo.number.search(countryCode, { 
       features: 'VOICE', 
       size: 100
     }, callback);
-  }
+  };
 
   buyNumber(countryCode, msisdn, callback) {
     return this.nexmo.number.buy(countryCode, msisdn, callback);
-  }
+  };
 
   createUser(username, callback) {
     return this.nexmo.users.create({
       name: username,
       display_name: username
     }, callback);
-  }
+  };
 }
 
 module.exports = Nexmo;

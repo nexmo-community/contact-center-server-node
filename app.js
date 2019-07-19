@@ -11,7 +11,6 @@ const sassMiddleware = require('node-sass-middleware');
 const session = require('express-session');
 require('dotenv').config();
 
-const apiJwtRouter = require('./routes/apiJwt');
 const apiRouter = require('./routes/api');
 const appRouter = require('./routes/app');
 const eventRouter = require('./routes/event');
@@ -83,10 +82,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  * App Routes
  */
 app.use('/', indexRouter);
-app.use('/api/jwt', apiJwtRouter);
 app.use('/webhooks', webhooksRouter);
 
-app.use('/api', auth.secure(), apiRouter);
+app.use('/api', apiRouter);
 app.use('/app', auth.secure(), appRouter);
 app.use('/app/events', auth.secure(), eventRouter);
 app.use('/app/setup', auth.secure(), setupRouter);

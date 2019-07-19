@@ -1,0 +1,50 @@
+<h1>{{title}}</h1>
+<strong>MOBILE_API_KEY:</strong> {{key}}
+<div class="alert alert-info small mt-4">NB: Although we use a <strong>MOBILE_API_KEY</strong> parameter as a rudimentary security mechanism, please note that this endpoint doesn't provide any user authentication.<br><strong>It is up to each developer to implement one or use existing systems</strong>.</div>
+<h2 class="mt-4 mb-2">User Authorisation</h2>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="input-group-text input-group-text-post">POST</div>
+  </div>
+  <div class="form-control form-control-url">{{jwtUrl}}</div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h4 class="h6 mt-4">Request body <span class="badge badge-success">application/json</span></h4>
+    <table class="table table-sm mt-4 small">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>mobile_api_key</strong></td>
+        <td>string</td>
+        <td>✓</td>
+      </tr>
+      <tr>
+        <td><strong>user_name</strong></td>
+        <td>string</td>
+        <td>✓</td>
+      </tr>
+      <tr>
+        <td><strong>expires_at</strong></td>
+        <td>string</td>
+        <td></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-md-6">
+    <h4 class="h6 mt-4">Response <span class="badge badge-success">application/json</span></h4>
+    <pre>{
+    "user_id": "USR-77d8faa0-...",
+    "user_name": "Jane",
+    "jwt": "eyJh...",
+    "expires_at": "2019-03-13T14:53:06.819Z"
+}</pre>
+  </div>
+</div>

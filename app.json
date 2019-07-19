@@ -5,21 +5,13 @@
   "repository": "https://github.com/nexmo-community/client-sdk-server-express",
   "logo": "https://pbs.twimg.com/profile_images/734764715277221888/E6jYBjb1_400x400.jpg",
   "env": {
-    "API_KEY": {
-      "description": "API_KEY",
-      "required": true
+    "SESSION_SECRET": {
+      "description": "This key is used to encrypt session data",
+      "generator": "secret"
     },
-    "API_SECRET": {
-      "description": "API_SECRET",
-      "required": true
-    },
-    "APP_ID": {
-      "description": "APP_ID",
-      "required": true
-    },
-    "PRIVATE_KEY": {
-      "description": "PRIVATE_KEY",
-      "required": true
+    "MOBILE_API_KEY": {
+      "description": "This key is used to secure the calls to the APIs used by the mobile apps",
+      "generator": "secret"
     }
   }
 }
