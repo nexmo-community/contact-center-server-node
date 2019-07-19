@@ -2,7 +2,6 @@ require('dotenv').config();
 const NexmoApi = require('nexmo');
 
 const Nexmo = class {
-
   constructor(apiKey, apiSecret, application, options) {
     if (application) {
       this.nexmo = new NexmoApi({
