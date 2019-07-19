@@ -1,27 +1,27 @@
 const Nexmo = require('./nexmo');
 
+const applicationModel = require('../models/application');
+
 const auth = () => {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
-      const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret);
-
-      nexmo.apps({}, (err, apps) => {
-        if (err || typeof apps !== 'object') {
-          req.session.destroy();
+      await applicationModel.findOne({}, (err, application) => {
+        if (err) {
+          console.log(err);
+          req.flash('alert', err);
+          req.redirect('/');
         }
-      });
 
-      req.nexmo = nexmo;
+        const nexmo = new Nexmo(req.session.apiKey, req.session.apiSecret, application);
 
-      if (typeof req.session.balance === 'undefined') {
-        nexmo.balance((err, balance) => {
-          if (err) {
+        nexmo.apps({}, (err, apps) => {
+          if (err || typeof apps !== 'object') {
+            req.session.destroy();
           }
-          if (balance) {
-            req.session.balance = balance.value;
-          }
-        })
-      }
+        });
+  
+        req.nexmo = nexmo;
+      })
     }
 
     next();

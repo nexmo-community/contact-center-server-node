@@ -1,12 +1,9 @@
 require('dotenv').config();
 const NexmoApi = require('nexmo');
 
-const applicationModel = require('../models/application');
-
 const Nexmo = class {
-  constructor(apiKey, apiSecret, options) {
-    const application = applicationModel.findOne({}, (err, app) => { /* do a thing */ });
 
+  constructor(apiKey, apiSecret, application, options) {
     if (application) {
       this.nexmo = new NexmoApi({
         apiKey: apiKey,
