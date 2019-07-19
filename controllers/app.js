@@ -1,4 +1,5 @@
 const applicationModel = require('../models/application');
+const userModel = require('../models/user');
 const stream = require('stream');
 
 const downloadData = (res, fileData, fileName) => {
@@ -32,10 +33,20 @@ exports.app_get = (req, res) => {
 exports.app_reset_get = (req, res) => {
   applicationModel.deleteMany({}, (err) => {
     if (err) {
+      console.log(err);
       req.flash('alert', err);
+      res.redirect('/app');
+    } else {
+      userModel.deleteMany({}, (err) => {
+        if (err) {
+          console.log(err);
+          req.flash('alert', err);
+          res.redirect('/app');
+        } else {
+          res.redirect('/app');
+        }
+      });
     }
-
-    res.redirect('/app');
   });
 }
 
