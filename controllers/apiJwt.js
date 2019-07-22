@@ -3,7 +3,15 @@ const applicationModel = require('../models/application');
 const NexmoApi = require('nexmo');
 
 exports.api_jwt_post = (req, res) => {
-  const { user_name, mobile_api_key, expires_at } = req.body;
+  const { user_name, mobile_api_key } = req.body;
+  let { expires_at } = req.body;
+
+  if (typeof expires_at === 'undefined') {
+    expires_at = new Date();
+    expires_at.setDate(expires_at.getDate() + 1);
+  } else {
+    expires_at = new Date(expires_at);
+  }
 
   if (typeof user_name !== 'string') {
     res.sendStatus(400);
@@ -38,7 +46,7 @@ exports.api_jwt_post = (req, res) => {
           const jwt = NexmoApi.generateJwt(Buffer.from(application.private_key, 'utf8'), {
             application_id: application.app_id,
             sub: user.username,
-            exp: new Date(expires_at).getTime()/1000,
+            exp: Math.round(expires_at/1000),
             acl: aclPaths
           });
 
