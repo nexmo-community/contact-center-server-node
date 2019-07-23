@@ -1,5 +1,6 @@
-var applicationModel = require('../models/application');
-var ncco = require('../util/ncco');
+const applicationModel = require('../models/application');
+const eventModel = require('../models/event');
+const ncco = require('../util/ncco');
 
 exports.webhooks_answer_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
@@ -14,13 +15,17 @@ exports.webhooks_answer_get = (req, res) => {
 }
 
 exports.webhooks_event_post = (req, res) => {
-  applicationModel.findOne({}, (err, application) => {
+  const event = new eventModel({
+    type: 'voide',
+    body: req.body
+  });
+
+  event.save((err) => {
     if (err) {
-      res.json({'error': 'An error occured.'});
-    } else if (application === null) {
-      res.json({'error': 'No application configured.'});
+      console.log(err);
+      res.sendStatus(400);
     } else {
-      res.json(ncco(req, application, []));
+      res.sendStatus(200);
     }
   });
 }
