@@ -1,4 +1,43 @@
+const dtmfOptions = {
+  jane: [
+    {
+      "action": "talk",
+      "text": "Please wait while we connect you to Jane"
+    },
+    {
+      "action": "connect",
+      "endpoint": [
+        {
+          "type": "app",
+          "user": "Jane"
+        }
+      ]
+    }
+  ],
+  joe: [
+    {
+      "action": "talk",
+      "text": "Please wait while we connect you to Joe"
+    },
+    {
+      "action": "connect",
+      "endpoint": [
+        {
+          "type": "app",
+          "user": "Joe"
+        }
+      ]
+    }
+  ]
+};
+
 module.exports = (req, application, body) => {
+    if (typeof body === 'string') {
+      if (dtmfOptions[body] != undefined) {
+        body = dtmfOptions[body];
+      }
+    }
+
     if (body === undefined || body === null) {
       body = application.ncco;
     }

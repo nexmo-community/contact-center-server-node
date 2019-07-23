@@ -54,7 +54,8 @@ ApplicationSchema
         {
           "action": "input",
           "eventUrl": [this.dtmf_url],
-          "timeout": "45"
+          "timeout": "10",
+          "submitOnHash": true
         }
       ]
     };

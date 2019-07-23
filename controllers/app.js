@@ -1,5 +1,6 @@
 const applicationModel = require('../models/application');
 const userModel = require('../models/user');
+const ncco = require('../util/ncco');
 const stream = require('stream');
 
 const downloadData = (res, fileData, fileName) => {
@@ -22,9 +23,11 @@ exports.app_get = (req, res) => {
     } else if (application === null) {
       res.redirect('/app/setup');
     } else {
-      res.render('application', { 
+      res.render('application', {
         title: application.name, 
-        application: application
+        application: application,
+        jane: ncco(req, application, 'jane'),
+        joe: ncco(req, application, 'joe')
       });
     }
   });

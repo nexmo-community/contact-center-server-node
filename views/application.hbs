@@ -76,9 +76,9 @@
     {{/if}}
     {{#ifeq application.type 'ivr'}}
       <h5>Jane selection</h5>
-      <pre>{"something": "something else"}</pre>
+      <pre>{{json ../jane}}</pre>
       <h5>Joe selection</h5>
-      <pre>{"something": "something else"}</pre>
+      <pre>{{json ../joe}}</pre>
     {{/ifeq}}
   </td>
 </tr>

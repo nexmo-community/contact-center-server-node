@@ -1,5 +1,5 @@
 exports.api_get = (req, res) => {
-  const appUrl = `${req.protocol}://${req.get('host')}`;
+  const appUrl = process.env.APP_URL || `${req.protocol}://${req.get('host')}`;
   const jwtUrl = `${appUrl}/api/jwt`;
 
   res.render('api', {

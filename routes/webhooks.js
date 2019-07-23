@@ -13,7 +13,7 @@ router.get('/answer', webhooksController.webhooks_answer_get);
 // POST webhooks event
 router.post('/event', webhooksController.webhooks_event_post);
 
-// GET webhooks dtmf
-router.get('/dtmf', webhooksController.webhooks_dtmf_get);
+// POST webhooks dtmf
+router.post('/dtmf', webhooksController.webhooks_dtmf_post);
 
 module.exports = router;

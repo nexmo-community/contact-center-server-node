@@ -25,7 +25,7 @@ exports.app_setup_post = (req, res) => {
       req.flash('alert', 'Application name is required.');
       res.render('setup', { title: 'Setup' });
     } else {
-      const appUrl = `${req.protocol}://${req.get('host')}`;
+      const appUrl = process.env.APP_URL || `${req.protocol}://${req.get('host')}`;
       const answerUrl = `${appUrl}/webhooks/answer`;
       const eventUrl = `${appUrl}/webhooks/event`;
       const dtmfUrl = `${appUrl}/webhooks/dtmf`;
