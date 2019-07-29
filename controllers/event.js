@@ -1,7 +1,5 @@
-exports.app_events_voice_get = (req, res) => {
-  res.render('index', { title: '' });
-}
+const eventModel = require('../models/event');
 
-exports.app_events_rtc_get = (req, res) => {
+exports.app_events_get = (req, res) => {
   res.render('index', { title: '' });
 }
