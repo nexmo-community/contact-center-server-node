@@ -13,5 +13,11 @@
       "description": "This key is used to secure the calls to the APIs used by the mobile apps",
       "generator": "secret"
     }
-  }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    }
+  ]
 }

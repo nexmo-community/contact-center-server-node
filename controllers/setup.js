@@ -1,4 +1,5 @@
 const applicationModel = require('../models/application');
+require('dotenv').config();
 
 exports.app_setup_get = (req, res) => {
   applicationModel.findOne({}, (err, application) => {
