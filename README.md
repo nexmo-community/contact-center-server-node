@@ -1,4 +1,4 @@
-![Nexmo](app/assets/images/nexmo.png)
+![Nexmo](public/images/nexmo.png)
 
 # Build Your Own Contact Center (Node.js version)
 
