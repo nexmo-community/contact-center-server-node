@@ -31,15 +31,15 @@ exports.api_jwt_post = (req, res) => {
         } else {
           const aclPaths = {
             "paths": {
-              "/v1/users/**": {},
-              "/v1/conversations/**": {},
-              "/v1/sessions/**": {},
-              "/v1/devices/**": {},
-              "/v1/image/**": {},
-              "/v3/media/**": {},
-              "/v1/applications/**": {},
-              "/v1/push/**": {},
-              "/v1/knocking/**": {}
+              "/*/users/**": {},
+              "/*/conversations/**": {},
+              "/*/sessions/**": {},
+              "/*/devices/**": {},
+              "/*/image/**": {},
+              "/*/media/**": {},
+              "/*/applications/**": {},
+              "/*/push/**": {},
+              "/*/knocking/**": {}
             }
           };
 
