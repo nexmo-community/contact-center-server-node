@@ -16,7 +16,7 @@ exports.webhooks_answer_get = (req, res) => {
 
 exports.webhooks_event_post = (req, res) => {
   const event = new eventModel({
-    type: 'voide',
+    type: 'voice',
     body: req.body
   });
 
