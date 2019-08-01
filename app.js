@@ -44,7 +44,6 @@ app.set('view engine', 'hbs');
 const sess = {
   secret: process.env.SESSION_SECRET || 'yoursecrethere',
   cookie: { maxAge: 60000 },
-  proxy: true,
   resave: true,
   saveUninitialized: true
 }
@@ -86,7 +85,7 @@ app.use('/webhooks', webhooksRouter);
 
 app.use('/api', apiRouter);
 app.use('/app', auth.secure(), appRouter);
-app.use('/app/events', auth.secure(), eventRouter);
+app.use('/events', auth.secure(), eventRouter);
 app.use('/app/setup', auth.secure(), setupRouter);
 app.use('/numbers', auth.secure(), numbersRouter);
 app.use('/users', auth.secure(), usersRouter);

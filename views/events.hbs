@@ -1,0 +1,32 @@
+<div class="row mt-4 justify-content-center">
+  <div class="col-12">
+    <h2 class="text-left">Events</h2>
+
+    {{#unless events }}
+      <p class="alert alert-info">No events yet</p>
+    {{/unless}}
+
+    {{#each events as |event key|}}
+      <dl class="row">
+        <dt class="col-sm-3">Event type</dt>
+        <dd class="col-sm-9">{{event.type}}</dd>
+
+        <dt class="col-sm-3">Timestamp</dt>
+        <dd class="col-sm-9">{{event.body.timestamp}}</dd>
+
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">{{event.body.status}}</dd>
+
+        <dt class="col-sm-3">Body</dt>
+        <dd class="col-sm-9">
+          <pre>{{json event.body}}</pre>
+        </dd>
+      </dl>
+    {{/each}}
+  </div>
+</div>
+<script>
+setTimeout(function(){
+  window.location.reload(1);
+}, 5000);
+</script>
