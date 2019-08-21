@@ -1,29 +1,38 @@
 ![Nexmo](public/images/nexmo.png)
 
-- [Start Locally](#start-locally)
-  - [Nexmo Account](#nexmo-account)
-  - [Mongo Database](#mongo-database)
-  - [Environment File](#environment-file)
-  - [Start it!](#start-it)
-- [Deploy with Heroku](#deploy-with-heroku)
-
 # Build Your Own Contact Center (Node.js version)
 
 This is one of the components required for Nexmo's ["Contact Center Use Case"](https://developer.nexmo.com/client-sdk/in-app-voice/contact-center-overview).
 
 To get started, you can use this server as a basis for your application's backend. You can run it locally or deploy it to Heroku as described below.
 
-## Start Locally
+**Table of Contents**
 
-### Nexmo Account
+- [Getting Started](#getting-started)
+  - [Start Locally](#start-locally)
+    - [Nexmo Account](#nexmo-account)
+    - [Mongo Database](#mongo-database)
+    - [Environment File](#environment-file)
+    - [Start it!](#start-it)
+  - [Deploy with Heroku](#deploy-with-heroku)
+- [Code of Conduct](#code-of-conduct)
+- [Contributing](#contributing)
+- [License](#license)
+
+
+## Getting Started
+
+### Start Locally
+
+#### Nexmo Account
 
 To be able to use this application you'll need to [Sign up for a Nexmo account](https://dashboard.nexmo.com/sign-up).
 
-### Mongo Database
+#### Mongo Database
 
 Set up a database and make note of the service address. It usually starts with `mongodb://` on port `27017`. You'll need to add this to the environment file.
 
-### Environment File
+#### Environment File
 
 Create an environment file by copying the example file, `.example.env` to `.env`, and editing it with your own configuration. Omitting environment variables will cause the application to use default values. As Nexmo needs to be able to access the server to provide NCCOs, default values will prevent you from making calls.
 
@@ -34,14 +43,30 @@ MOBILE_API_KEY=a-random-url-key-here
 MONGO_URL=mongodb://localaddress:27017/database-name
 ```
 
-### Start it!
+#### Start it!
 
 ```js
 npm run dev
 ```
 
-## Deploy with Heroku
+### Deploy with Heroku
 
 This application is configured to deploy to Heroku. 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Code of Conduct
+
+In the interest of fostering an open and welcoming environment, we strive to make participation in our project and our community a harassment-free experience for everyone. Please check out our [Code of Conduct](CODE_OF_CONDUCT.md) in full.
+
+## Contributing 
+We :heart: contributions from everyone! It is a good idea to [talk to us](https://developer.nexmo.com/community/slack/) first if you plan to add any new functionality. Otherwise, [bug reports](https://github.com/nexmo-community/contact-center-server-node/issues/), [bug fixes](https://github.com/nexmo-community/contact-center-server-node/pulls) and feedback on the library is always appreciated. Check out the [Contributing Guidelines](CONTRIBUTING.md) for more information and please follow the [GitHub Flow](https://guides.github.com/introduction/flow/index.html).
+
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) [![GitHub contributors](https://img.shields.io/github/contributors/nexmo-community/contact-center-server-node.svg)](https://github.com/nexmo-community/contact-center-server-node/graphs/contributors/)
+
+## License
+
+This project is subject to the [MIT License][license]
+
+[signup]: https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=contact-center-server-node
+[license]: LICENSE
