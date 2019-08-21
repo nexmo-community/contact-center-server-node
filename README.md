@@ -1,5 +1,13 @@
 ![Nexmo](public/images/nexmo.png)
 
+- [Build Your Own Contact Center (Node.js version)](#build-your-own-contact-center-nodejs-version)
+  - [Start Locally](#start-locally)
+    - [Nexmo Account](#nexmo-account)
+    - [Mongo Database](#mongo-database)
+    - [Environment File](#environment-file)
+    - [Start it!](#start-it)
+  - [Deploy with Heroku](#deploy-with-heroku)
+
 # Build Your Own Contact Center (Node.js version)
 
 This is one of the components required for Nexmo's ["Contact Center Use Case"](https://developer.nexmo.com/client-sdk/in-app-voice/contact-center-overview).
