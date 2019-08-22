@@ -1,6 +1,6 @@
 ![Nexmo](public/images/nexmo.png)
 
-# Build Your Own Contact Center (Node.js version)
+# Build Your Own Contact Center (Node.js server)
 
 This is one of the components required for Nexmo's ["Contact Center Use Case"](https://developer.nexmo.com/client-sdk/in-app-voice/contact-center-overview).
 
