@@ -1,6 +1,6 @@
 * **Please check if the PR fulfills these requirements**
-- [ ] You've followed the [contributing guidelines](CONTRIBUTING.md)
-- [ ] You've adheared the [code of conduct](CODE_OF_CONDUCT.md)
+- [ ] You've followed the [contributing guidelines][contributing]
+- [ ] You've adheared the [code of conduct][coc]
 
 * **What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
 
@@ -19,3 +19,6 @@
 
 
 * **Other information**:
+
+[coc]: CODE_OF_CONDUCT.md "Code of Conduct"
+[contributing]: CONTRIBUTING.md "Contributing"

@@ -26,7 +26,7 @@ To get started, you can use this server as a basis for your application's backen
 
 #### Nexmo Account
 
-To be able to use this application you'll need to [Sign up for a Nexmo account](https://dashboard.nexmo.com/sign-up).
+To be able to use this application you'll need to [Sign up for a Nexmo account][signup].
 
 #### Mongo Database
 
@@ -57,16 +57,24 @@ This application is configured to deploy to Heroku.
 
 ## Code of Conduct
 
-In the interest of fostering an open and welcoming environment, we strive to make participation in our project and our community a harassment-free experience for everyone. Please check out our [Code of Conduct](CODE_OF_CONDUCT.md) in full.
+In the interest of fostering an open and welcoming environment, we strive to make participation in our project and our community a harassment-free experience for everyone. Please check out our [Code of Conduct][coc] in full.
 
 ## Contributing 
-We :heart: contributions from everyone! It is a good idea to [talk to us](https://developer.nexmo.com/community/slack/) first if you plan to add any new functionality. Otherwise, [bug reports](https://github.com/nexmo-community/contact-center-server-node/issues/), [bug fixes](https://github.com/nexmo-community/contact-center-server-node/pulls) and feedback on the library is always appreciated. Check out the [Contributing Guidelines](CONTRIBUTING.md) for more information and please follow the [GitHub Flow](https://guides.github.com/introduction/flow/index.html).
+We :heart: contributions from everyone! Check out the [Contributing Guidelines][contributing] for more information.
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) [![GitHub contributors](https://img.shields.io/github/contributors/nexmo-community/contact-center-server-node.svg)](https://github.com/nexmo-community/contact-center-server-node/graphs/contributors/)
+[![contributions welcome][contribadge]][issues]
 
 ## License
 
 This project is subject to the [MIT License][license]
 
-[signup]: https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=contact-center-server-node
-[license]: LICENSE
+[logo]: nexmo.png "Nexmo"
+[contribadge]: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat "Contributions Welcome"
+
+[signup]: https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=lukeocodes
+
+[coc]: CODE_OF_CONDUCT.md "Code of Conduct"
+[contributing]: CONTRIBUTING.md "Contributing"
+[license]: LICENSE "MIT License"
+
+[issues]: ./../../issues "Issues"
