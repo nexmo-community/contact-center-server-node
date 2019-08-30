@@ -1,19 +1,15 @@
 {
-  "name": "client-sdk-server-express",
+  "name": "client-sdk-server-node",
   "version": "1.0.0",
-  "description": "Express backend for Nexmo Client SDK apps",
+  "description": "Build Your Own Contact Center (Node sever). This is one of the components required for Nexmo's Contact Center Use Case.",
+  "author": "Luke Oliff",
+  "license": "MIT",
+  "main": "app.js",
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www"
   },
-  "keywords": [
-    "nexmo",
-    "express",
-    "javascript"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
