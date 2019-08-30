@@ -45,6 +45,14 @@ MONGO_URL=mongodb://localaddress:27017/database-name
 
 #### Start it!
 
+Before you start it for the first time, run this to install our dependencies.
+
+```js
+npm install
+```
+
+Once installed, you can now run it locally.
+
 ```js
 npm run dev
 ```
