@@ -5,7 +5,7 @@ const applicationModel = require('../models/application');
 const auth = () => {
   return async (req, res, next) => {
     if (typeof req.session.apiKey !== 'undefined' || typeof req.session.apiSecret !== 'undefined') {
-      await applicationModel.findOne({}, (err, application) => {
+      applicationModel.findOne({}, (err, application) => {
         if (err) {
           console.log(err);
           req.flash('alert', err);
@@ -18,13 +18,14 @@ const auth = () => {
           if (err || typeof apps !== 'object') {
             req.session.destroy();
           }
+          next();
         });
   
         req.nexmo = nexmo;
       })
+    } else {
+      next();
     }
-
-    next();
   }
 }
 
