@@ -21,7 +21,7 @@
     "express-session": "^1.16.1",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.5.14",
+    "mongoose": "^6.0.0",
     "morgan": "~1.9.0",
     "nexmo": "^2.4.3-beta-1",
     "nexmo-client": "^4.0.2",
